@@ -197,12 +197,11 @@ async function run(
 
   try {
     const packageName = await getPackageName(packageToInstall);
-    console.log(packageName);
 
     indentOutput(`
-        Installing ${chalk.cyan(packageName)}...
+      Installing ${chalk.cyan(packageName)}...
 
-      `);
+    `);
 
     await install(useYarn, packageToInstall, verbose);
 

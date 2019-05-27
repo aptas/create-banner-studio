@@ -51,8 +51,7 @@ switch (command) {
 
   default:
     console.log(`
-Unknown command ${command}. Known commands are 'build', 'start', 'generate' and 'create'. Perhaps you need to update banner-studio?
-See: https://github.com/magnus-bergman/create-banner-studio/blob/master/packages/banner-studio/template/README.md#updating-to-new-releases
+Unknown command ${command}. Known commands are 'start', 'create', 'generate' and 'build'.
 `);
     break;
 }

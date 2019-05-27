@@ -20,7 +20,7 @@ No ${section} detected.
 
 Please specify atleast one banner in formula.yml at the root of your project.
 
-See https://github.com/magnus-bergman/create-banner-set/ for more info.
+See https://github.com/aptas/create-banner-studio/ for more info.
 `);
 
 let config = null;
