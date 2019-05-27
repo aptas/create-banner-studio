@@ -131,7 +131,7 @@ function install(useYarn, dependencies, verbose) {
     let args;
     if (useYarn) {
       command = 'yarn';
-      args = ['link', '--exact'].concat(dependencies);
+      args = ['add', '--exact'].concat(dependencies);
     } else {
       command = 'npm';
       args = ['install', '--save', '--save-exact'].concat([dependencies]);
