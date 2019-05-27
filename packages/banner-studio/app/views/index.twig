@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
+  <title>banner studio</title>
+  <style type="text/css">
+    :root {
+      --root-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+        Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+      --root-font-size: 16px;
+      --root-line-height: 1.5;
+      --root-font-weight: 400;
+
+      --color-base: #1b1b1b;
+
+      --color-bg: var(--color-base);
+
+      --color-contrast-min: #212121;
+      --color-contrast-poor: #323232;
+      --color-contrast-medium: #8f8f8f;
+      --color-contrast-rich: #dedede;
+      --color-contrast-max: #fefefe;
+
+      --color-accent: #5948e6;
+
+      --color-font-base: var(--color-contrast-max);
+
+      --color-link: var(--color-font-base);
+      --color-link-hover: var(--color-font-base);
+    }
+
+    html {
+      height: 100%;
+
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100%;
+
+      font: var(--root-font-size) / var(--root-line-height) var(--root-font-family);
+      color: var(--color-font-base);
+
+      background-color: var(--color-bg);
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+
+      -webkit-tap-highlight-color: transparent;
+
+      &:focus {
+        outline: 0;
+      }
+    }
+
+
+    a {
+      color: var(--color-link);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--color-link-hover);
+      }
+    }
+
+    .banners {
+      position: relative;
+
+      margin: 1em 1em 0;
+
+      text-align: center;
+    }
+
+    .banners ul {
+      margin: 0;
+      padding: 0.5em 3em 0.5em 1em;
+
+      list-style: none;
+
+      text-align: center;
+
+      background: var(--color-contrast-poor);
+    }
+
+    .banners ul li {
+      display: inline-block;
+      margin: 0.1em;
+    }
+
+    .banners ul li a {
+      display: inline-block;
+
+      padding: 0.3em 0.7em;
+
+      text-decoration: none;
+
+      border-radius: 4px;
+
+      /*background: var(--color-contrast-medium);*/
+      background: #444;
+    }
+
+    .banners ul li .selected-banner {
+      background: var(--color-accent);
+    }
+
+    .banners ul li .selected-banner a {
+      color: var(--color-contrast-min);
+    }
+
+    .banners a {
+      font-size: 12px;
+    }
+
+    .banners .reset {
+      position: absolute;
+      top: 1em;
+      right: 1em;
+    }
+
+    .selected.empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      min-height: 400px;
+    }
+
+    .iframe-wrapper {
+      position: relative;
+
+      display: inline-block;
+
+      margin: 2.5em 1em 0;
+    }
+
+    .iframe-wrapper span {
+      position: absolute;
+      bottom: 100%;
+
+      padding: 2px 8px 1px;
+
+      font-size: 12px;
+      line-height: 20px;
+
+      border-radius: 4px 4px 0 0;
+      background: var(--color-contrast-poor);
+    }
+
+    iframe {
+      border: 1px solid var(--color-contrast-poor);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="banners">
+    <a href="/" class="reset">Reset</a>
+    <ul>
+      {% for index, banner in allBanners %}
+        <li>
+          {% if index in banners %}
+            <a href="/?banners={{ banners|join(',') }}&remove={{ index }}" class="selected-banner">{{ banner.dimensions.width }}x{{ banner.dimensions.height }}_{{ banner.name }}</a>
+          {% else %}
+            <a href="/?banners={{ banners|merge([index])|join(',') }}">{{ banner.dimensions.width }}x{{ banner.dimensions.height }}_{{ banner.name }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="selected{% if show.length == 0 %} empty{% endif %}">
+    {% if show|length > 0 %}
+      {% for banner in show %}
+        <div class="iframe-wrapper" style="width: {{ banner.dimensions.width }}px; height: {{ banner.dimensions.height }}px;">
+          <span>{{ banner.dimensions.width }}x{{ banner.dimensions.height }}_{{ banner.name }}</span>
+          <iframe
+            src="/{{ banner.dimensions.width }}x{{ banner.dimensions.height }}_{{ banner.name }}"
+            frameborder="0"
+            style="width: calc({{ banner.dimensions.width }}px + 2px); height: calc({{ banner.dimensions.height }}px + 2px);">
+          </iframe>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No banner selected.</p>
+    {% endif %}
+  </div>
+</body>
+
+</html>

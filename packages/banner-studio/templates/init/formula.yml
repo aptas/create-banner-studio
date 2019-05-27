@@ -1,0 +1,19 @@
+banners:
+  - name: master
+    dimensions:
+      width: 980
+      height: 300
+      responsive: false
+    provider: adform
+    inline:
+      css: true
+      js: true
+    thirdParty:
+      - gsap
+      - jquery
+
+options:
+  minify:
+    html: true
+    css: true
+    js: true

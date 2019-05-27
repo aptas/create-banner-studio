@@ -1,0 +1,45 @@
+:root {
+  font: var(--root-font-size) / var(--root-line-height) var(--root-font-family);
+  color: var(--color-font-base);
+}
+
+body {
+}
+
+p {
+}
+
+h1 {
+}
+h2 {
+}
+h3 {
+}
+h4 {
+}
+h5 {
+}
+h6 {
+}
+
+address {
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
+}
+
+b,
+strong {
+  font-weight: 700;
+}
+
+i,
+em {
+  font-style: italic;
+}
