@@ -1,6 +1,6 @@
 {
   "name": "create-banner-studio",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Develop HTML banners with no build configuration",
   "repository": {
     "type": "git",
