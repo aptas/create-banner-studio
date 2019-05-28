@@ -33,6 +33,7 @@ module.exports = (prod, banner) => {
       /\.css$/,
       /\.json$/,
       /\.ya?ml$/,
+      /\.svg$/,
       /\.(gltf|glb|obj)$/,
       /\.(glsl|frag|vert)$/,
     ],
@@ -188,6 +189,11 @@ module.exports = (prod, banner) => {
     ],
   };
 
+  const svgLoader = {
+    test: /\.svg$/,
+    use: { loader: require.resolve('svg-inline-loader') },
+  };
+
   const yamlLoader = {
     test: /\.ya?ml$/,
     use: [
@@ -221,6 +227,7 @@ module.exports = (prod, banner) => {
     jsLoader,
     cssLoader,
     cssModuleLoader,
+    svgLoader,
     yamlLoader,
     glslifyLoader,
     modelLoader,
