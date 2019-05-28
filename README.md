@@ -133,7 +133,7 @@ options:
 
 Inside the newly created studio, you can run some built-in commands:
 
-### `npm run create` or `yarn create`
+### `npm run new` or `yarn new`
 
 Starts an interactive flow of creating a new banner within the set. The output is then added to the formula and a new banner is generated.<br>
 

@@ -37,17 +37,17 @@ module.exports = async function(appPath, appName, verbose, originalDirectory) {
   // console.log(ownPath);
   // console.log(useYarn);
 
-  // Copy over some of the devDependencies
-  appPackage.dependencies = appPackage.dependencies || {};
-  appPackage.devDependencies = appPackage.devDependencies || {};
-
   // Setup the script rules
   appPackage.scripts = {
     start: 'banner-studio start',
+    new: 'banner-studio create',
     generate: 'banner-studio generate',
-    create: 'banner-studio create',
     build: 'banner-studio build',
   };
+
+  // Copy over some of the devDependencies
+  appPackage.dependencies = appPackage.dependencies || {};
+  appPackage.devDependencies = appPackage.devDependencies || {};
 
   await fs.writeFile(
     path.join(appPath, 'package.json'),

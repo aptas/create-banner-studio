@@ -44,8 +44,8 @@ function spawnCommand(command) {
 switch (command) {
   case 'start':
   case 'build':
-  case 'generate':
   case 'create':
+  case 'generate':
     spawnCommand(command);
     break;
 
