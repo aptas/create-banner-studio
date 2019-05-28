@@ -5,6 +5,7 @@ banners:
       height: 300
       responsive: false
     provider: adform
+    sizeLimit: 150
     inline:
       css: true
       js: true
