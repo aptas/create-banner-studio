@@ -77,19 +77,19 @@ const questions = [
     filter: value => parseInt(value, 10),
     when: answers => answers.hasSizeLimit,
   },
-  {
-    type: 'confirm',
-    name: 'shouldExtend',
-    message: 'Would you like this banner to extend another banner?',
-  },
-  {
-    type: 'list',
-    name: 'parent',
-    message: 'Which banner would you like to extend?',
-    choices: config.banners.map(banner => banner.src),
-    filter: value => config.banners.find(banner => banner.src === value),
-    when: answers => answers.shouldExtend,
-  },
+  // {
+  //   type: 'confirm',
+  //   name: 'shouldExtend',
+  //   message: 'Would you like this banner to extend another banner?',
+  // },
+  // {
+  //   type: 'list',
+  //   name: 'parent',
+  //   message: 'Which banner would you like to extend?',
+  //   choices: config.banners.map(banner => banner.src),
+  //   filter: value => config.banners.find(banner => banner.src === value),
+  //   when: answers => answers.shouldExtend,
+  // },
   {
     type: 'list',
     name: 'provider',
