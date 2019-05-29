@@ -40,6 +40,10 @@ if (!config.banners || !config.banners.length) {
 
 config.banners = config.banners.map(banner => ({
   ...banner,
+  provider:
+    typeof banner.provider !== 'undefined'
+      ? banner.provider
+      : config.options.provider,
   inline:
     typeof banner.inline !== 'undefined'
       ? banner.inline
