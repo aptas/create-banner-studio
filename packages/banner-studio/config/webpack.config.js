@@ -15,8 +15,6 @@ const createConfig = require('./webpack/createConfig');
 
 const { banners } = require('./config');
 
-// console.log(banners);
-
 const prod = process.env.NODE_ENV === 'production';
 
 const src = path.resolve(fs.realpathSync(process.cwd()), 'src');

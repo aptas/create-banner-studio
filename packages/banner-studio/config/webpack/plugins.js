@@ -130,7 +130,9 @@ module.exports = (prod, src, dest, target) => {
     if (target.provider === 'adform') {
       plugins.push(
         new AdformManifestWebpackPlugin({
-          title: target.dest,
+          title: `${target.projectName ? `${target.projectName}_` : ''}${
+            target.dest
+          }`,
           width: target.dimensions.width,
           height: target.dimensions.height,
         })

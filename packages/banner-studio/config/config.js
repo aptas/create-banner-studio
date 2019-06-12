@@ -39,6 +39,7 @@ if (!config.banners || !config.banners.length) {
 }
 
 config.banners = config.banners.map(banner => ({
+  projectName: config.projectName,
   ...banner,
   provider:
     typeof banner.provider !== 'undefined'
