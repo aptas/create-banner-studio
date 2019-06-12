@@ -20,7 +20,7 @@ module.exports = targets =>
             return '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>';
 
           case 'seenthis':
-            return '<script src="https://video.seenthis.se/v2/player/5/player.js"></script>';
+            return '<script src="https://video.seenthis.se/v2/player/6/player.js"></script>';
 
           case 'three':
             return '<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js"></script>';
