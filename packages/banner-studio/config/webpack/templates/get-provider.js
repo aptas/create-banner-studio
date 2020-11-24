@@ -9,6 +9,20 @@
 
 'use strict';
 
+function createScript(fn, name) {
+  return `
+    <script>
+      (function() {
+        var LOADED = false;
+
+        ${fn}
+
+        window.addEventListener('load', ${name}, false);
+        document.addEventListener('DOMContentLoaded', ${name}, false);
+      })();
+    </script>`;
+}
+
 module.exports = (provider, width, height) => {
   const output = {
     meta: '',
@@ -16,19 +30,30 @@ module.exports = (provider, width, height) => {
     body: '',
   };
 
-  const createScript = (fn, name) => `
-      <script>
-        (function() {
-          var LOADED = false;
-
-          ${fn}
-
-          window.addEventListener('load', ${name}, false);
-          document.addEventListener('DOMContentLoaded', ${name}, false);
-        })();
-      </script>`;
-
   switch (provider) {
+    case 'adform-retarget':
+      output.head = `
+    <script>
+      (function() {
+        var s = document.createElement('script');
+        s.src = (window.API_URL || 'https://s1.adform.net/banners/scripts/rmb/Adform.DHTML.js?bv=' + Math.random());
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>`;
+      break;
+
+    case 'adform-dynamic':
+      output.head = `
+    <script>
+      (function() {
+        var s = document.createElement('script');
+        s.src = (window.API_URL || 'https://s1.adform.net/banners/scripts/rmb/Adform.DHTML.js?bv=' + Math.random());
+        document.getElementsByTagName('head')[0].appendChild(s);
+      })();
+    </script>
+    <script src="https://s1.adform.net/banners/scripts/components/Adform.DynAdsHelper.js"></script>`;
+      break;
+
     case 'adform':
       output.head = `
     <script>

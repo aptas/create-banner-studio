@@ -31,6 +31,7 @@ class AdformManifestWebpackPlugin {
     this.dest = options.dest;
     this.width = options.width;
     this.height = options.height;
+    this.provider = options.provider;
   }
 
   apply(compiler) {
@@ -49,7 +50,16 @@ class AdformManifestWebpackPlugin {
   "events": {
     "enabled": 1,
     "list": {}
-  },
+  },${
+    this.provider === 'adform-retarget'
+      ? `
+
+  "events": {
+    "enabled": 1,
+    "list": {}
+  },`
+      : ''
+  }
 
   "clicktags": {
     "clickTAG": "http://www.adform.com/site/"

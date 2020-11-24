@@ -43,6 +43,8 @@ const devMiddleware = webpackDevMiddleware(compiler, {
 app.use(devMiddleware);
 app.use(webpackHotMiddleware(compiler));
 
+const configBanners = config.banners.filter(banner => !banner.parent);
+
 app.get('/', (req, res, next) => {
   if (req.method === 'GET' && req.accepts('html')) {
     // Transform query param banners into array of integers
@@ -55,11 +57,11 @@ app.get('/', (req, res, next) => {
 
     // Filter all banners into array of selected banners
     const show = banners
-      ? config.banners.filter((item, index) => banners.indexOf(index) > -1)
+      ? configBanners.filter((item, index) => banners.indexOf(index) > -1)
       : [];
 
     res.render('index.twig', {
-      allBanners: config.banners,
+      allBanners: configBanners.filter(banner => !banner.parent),
       banners: banners,
       show: show,
     });

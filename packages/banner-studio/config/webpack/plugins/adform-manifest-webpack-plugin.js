@@ -26,6 +26,7 @@ class AdformManifestWebpackPlugin {
     this.title = options.title;
     this.width = options.width;
     this.height = options.height;
+    this.provider = options.provider;
   }
 
   apply(compiler) {

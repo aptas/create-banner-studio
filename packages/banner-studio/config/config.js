@@ -38,31 +38,48 @@ if (!config.banners || !config.banners.length) {
   process.exit(1);
 }
 
-config.banners = config.banners.map(banner => ({
-  projectName: config.projectName,
-  ...banner,
-  provider:
-    typeof banner.provider !== 'undefined'
-      ? banner.provider
-      : config.options.provider,
-  inline:
-    typeof banner.inline !== 'undefined'
-      ? banner.inline
-      : config.options.inline,
-  thirdParty:
-    typeof banner.thirdParty !== 'undefined'
-      ? banner.thirdParty
-      : config.options.thirdParty,
-  minify:
-    typeof banner.minify !== 'undefined'
-      ? banner.minify
-      : config.options.minify,
-  src: `${banner.dimensions.width}x${banner.dimensions.height}${
-    banner.name ? `_${banner.name}` : ''
-  }`,
-  dest: `${banner.dimensions.width}x${banner.dimensions.height}${
-    banner.name ? `_${banner.name}` : ''
-  }`,
-}));
+config.banners = config.banners.map(banner => {
+  const parent =
+    banner.parent && config.banners.find(b => b.name === banner.parent);
+
+  const parentDest = parent
+    ? [
+        `${parent.dimensions.width}x${parent.dimensions.height}`,
+        `${parent.name ? `_${parent.name}` : ''}`,
+      ].join('')
+    : '';
+
+  return {
+    projectName: config.projectName,
+    ...banner,
+    provider:
+      typeof banner.provider !== 'undefined'
+        ? banner.provider
+        : config.options.provider,
+    inline:
+      typeof banner.inline !== 'undefined'
+        ? banner.inline
+        : config.options.inline,
+    thirdParty:
+      typeof banner.thirdParty !== 'undefined'
+        ? banner.thirdParty
+        : config.options.thirdParty,
+    minify:
+      typeof banner.minify !== 'undefined'
+        ? banner.minify
+        : config.options.minify,
+    src: [
+      `${banner.dimensions.width}x${banner.dimensions.height}`,
+      `${banner.name ? `_${banner.name}` : ''}`,
+    ].join(''),
+    dest: [
+      `${
+        process.env.NODE_ENV === 'production' && parent ? `${parentDest}/` : ''
+      }`,
+      `${banner.dimensions.width}x${banner.dimensions.height}`,
+      `${banner.name ? `_${banner.name}` : ''}`,
+    ].join(''),
+  };
+});
 
 module.exports = config;
